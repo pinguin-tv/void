@@ -11,8 +11,6 @@ https://www.youtube.com/@Pinguin-TV
 Forum:
 https://linux-talk.de/forum/
 
-
-
 Requirements
 Void Linux (glibc) has been installed using the base image.
 The installed Void Linux has been booted.
