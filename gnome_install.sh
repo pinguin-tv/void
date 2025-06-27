@@ -30,13 +30,13 @@ clear
 echo "Richte Gnome Hintergrundbild ein / Setting up Gnome backgroundimage"
 echo " -- Bitte unten das sudo Passwort eingeben / Please give sudo-password -- "
 sudo mkdir -p /usr/share/backgrounds/
-sudo cp ~/void/wallpaper/1440-VCF-1.jpg /usr/share/backgrounds/
-sudo cp ~/void/wallpaper/vcf-01.png /usr/share/backgrounds/
-sudo cp ~/void/wallpaper/vcf-04.png /usr/share/backgrounds/
+sudo cp ~/void/wallpaper/111.jpg /usr/share/backgrounds/
+sudo cp ~/void/wallpaper/112.jpg /usr/share/backgrounds/
+sudo cp ~/void/wallpaper/113.jpg /usr/share/backgrounds/
 sudo mkdir -p /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/vcf-01.xml /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/vcf-02.xml /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/vcf-03.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/gnome-background-properties/111.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/gnome-background-properties/112.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/gnome-background-properties/113.xml /usr/share/gnome-background-properties/
 #Extensions
 #sudo mkdir -p /usr/share/gnome-shell/
 #sudo mkdir -p /usr/share/gnome-shell/extensions/
@@ -159,7 +159,7 @@ sleep 1
 #Software
 clear
 echo "Install Software..."
-sudo xbps-install -y firefox firefox-i18n-de gnome-console tumbler gnome-tweaks
+sudo xbps-install -y firefox firefox-i18n-de gnome-terminal tumbler gnome-tweaks
 sleep 1
 # Erstelle ein Skript, das die gsettings nach der Anmeldung ausführt
 echo "Creating autostart script for gnome theme settings..."
@@ -171,7 +171,7 @@ gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
 gsettings set org.gnome.theme name Arc-Dark
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"
 gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 11'
-gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/1440-VCF-1.jpg'
+gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/112.jpg'
 
 
 # Lösche den Autostart-Eintrag nach der ersten Ausführung
@@ -227,9 +227,9 @@ echo "Gnome-Theme Autostart-Skript erstellt. Skript beendet."
 
 #Loginmanager
 clear
-echo "Install GDM..."
-sudo xbps-install -y gdm
-sudo ln -s /etc/sv/gdm/ /var/service/
+echo "Install Lightdm..."
+sudo xbps-install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+sudo ln -s /etc/sv/lightdm/ /var/service/
 sleep 1
 
 #Virt-Manager
@@ -248,9 +248,12 @@ sudo xbps-install -y arc-icon-theme arc-theme Adapta papirus-icon-theme adwaita-
 sleep 1
 
 # Füge die gewünschten Einstellungen zur LightDM-Konfiguration hinzu
-#echo "theme-name=Arc-Dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
-#echo "icon-theme-name=Arc" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
-#echo "background=/usr/share/backgrounds/lightdmbackground.jpg" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
+echo "theme-name=Arc-Dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
+echo "icon-theme-name=Arc" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
+echo "background=/usr/share/backgrounds/112.jpg" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
+echo "indicators = ~host;~spacer;~clock;~spacer;~layout;~session;~a11y;~power" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 
+echo "greeter-setup-script=/usr/bin/numlockxon" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
+echo "display-setup-script=setxkbmap de" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
 
 #Setup Autostart - pipewire & wireplubmer
 
