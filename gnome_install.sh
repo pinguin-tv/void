@@ -34,9 +34,9 @@ sudo cp ~/void/wallpaper/111.jpg /usr/share/backgrounds/
 sudo cp ~/void/wallpaper/112.jpg /usr/share/backgrounds/
 sudo cp ~/void/wallpaper/113.jpg /usr/share/backgrounds/
 sudo mkdir -p /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/111.xml /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/112.xml /usr/share/gnome-background-properties/
-sudo cp ~/void/gnome-background-properties/113.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/wallpaper/111.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/wallpaper/112.xml /usr/share/gnome-background-properties/
+sudo cp ~/void/wallpaper/113.xml /usr/share/gnome-background-properties/
 #Extensions
 #sudo mkdir -p /usr/share/gnome-shell/
 #sudo mkdir -p /usr/share/gnome-shell/extensions/
@@ -96,9 +96,11 @@ sleep 1
 
 #elogind
 clear
-echo "Install elogind..."
-sudo xbps-install -y elogind
+echo "Install elogind/avahi..."
+sudo xbps-install -y elogind avahi avahi-utils cronie
 sudo ln -s /etc/sv/elogind /var/service/
+sudo ln -s /etc/sv/avahi-daemon /var/service/
+sudo ln -s /etc/sv/cronie /var/service/
 sleep 1
 
 #Audio/bluetooth/Mixer
@@ -125,13 +127,13 @@ sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit me
 clear
 echo "Install XORG/Gnome-cor..."
 sudo xbps-install -y xorg xorg-input-drivers xorg-video-drivers setxkbmap xauth xrandr
-sudo xbps-install -y octoxbps gnome-core xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-desktop-portal-wlr xdg-utils xdg-desktop-portal-kde gnome-keyring sushi nautilus-gnome-console-extension wget bash-completion libva-vdpau-driver vdpauinfo curl ffmpeg mesa-vdpau mesa-vaapi autoconf automake bison m4 make libtool linux-headers extension-manager chrome-gnome-shell
+sudo xbps-install -y octoxbps gnome-core xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-desktop-portal-wlr xdg-utils xdg-desktop-portal-kde gnome-keyring sushi wget bash-completion libva-vdpau-driver vdpauinfo curl ffmpeg mesa-vdpau mesa-vaapi autoconf automake bison m4 make libtool linux-headers extension-manager chrome-gnome-shell os-prober file-roller
 sleep 1
 
 #Druckerunterstuetzung / Printersupport
 clear
 echo "Install Printer..."
-sudo xbps-install -y cups cups-filters gutenprint cups-pk-helper bluez-cups
+sudo xbps-install -y cups cups-filters gutenprint cups-pk-helper bluez-cups iscan-data nss-mdns system-config-printer epson-inkjet-printer-escpr hplip brother-brlaser foomatic-db foomatic-db-engine
 sudo ln -s /etc/sv/cupsd /var/service/
 sudo xbps-install -y gnome-system-tools users-admin
 sleep 1
@@ -139,7 +141,7 @@ sleep 1
 #Filesystem
 clear
 echo "Install Zusatztools/Installing additional tools..."
-sudo xbps-install -y exfat-utils fuse-exfat gvfs-afc gvfs-mtp gvfs-smb udisks2 ntfs-3g gptfdisk bluez AppStream libva-vdpau-driver vdpauinfo autofs gptfdisk dialog cryptsetup lvm2 mdadm dbus avahi avahi-utils libxcrypt-compat gnome-disk-utility gnome-bluetooth
+sudo xbps-install -y exfat-utils fuse-exfat gvfs-afc gvfs-mtp gvfs-smb udisks2 ntfs-3g gptfdisk bluez AppStream libva-vdpau-driver vdpauinfo autofs gptfdisk dialog cryptsetup lvm2 mdadm dbus avahi avahi-utils libxcrypt-compat gnome-disk-utility gnome-bluetooth numlockx gedit gedit-plugins
 #Aktiviere bluetoothd/activate bluetoothd
 sudo ln -s /etc/sv/bluetoothd /var/service/
 sleep 1
@@ -159,7 +161,7 @@ sleep 1
 #Software
 clear
 echo "Install Software..."
-sudo xbps-install -y firefox firefox-i18n-de gnome-terminal tumbler gnome-tweaks
+sudo xbps-install -y firefox firefox-i18n-de gnome-terminal nautilus-gnome-terminal-extension tumbler gnome-tweaks
 sleep 1
 # Erstelle ein Skript, das die gsettings nach der Anmeldung ausführt
 echo "Creating autostart script for gnome theme settings..."
