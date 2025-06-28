@@ -37,6 +37,10 @@ sudo mkdir -p /usr/share/gnome-background-properties/
 sudo cp ~/void/wallpaper/111.xml /usr/share/gnome-background-properties/
 sudo cp ~/void/wallpaper/112.xml /usr/share/gnome-background-properties/
 sudo cp ~/void/wallpaper/113.xml /usr/share/gnome-background-properties/
+#lightdm-Anpassung
+sudo mkdir -p /etc/lightdm/
+sudo cp ~/void/lightdm/lightdm.conf /etc/lightdm/
+sudo cp ~/void/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 #Extensions
 #sudo mkdir -p /usr/share/gnome-shell/
 #sudo mkdir -p /usr/share/gnome-shell/extensions/
@@ -253,9 +257,9 @@ sleep 1
 echo "theme-name=Arc-Dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
 echo "icon-theme-name=Arc" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
 echo "background=/usr/share/backgrounds/112.jpg" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null
-echo "indicators = ~host;~spacer;~clock;~spacer;~layout;~session;~a11y;~power" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 
-echo "greeter-setup-script=/usr/bin/numlockxon" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
-echo "display-setup-script=setxkbmap de" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
+#echo "indicators = ~host;~spacer;~clock;~spacer;~layout;~session;~a11y;~power" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 
+#echo "greeter-setup-script=/usr/bin/numlockxon" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
+#echo "display-setup-script=setxkbmap de" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null
 
 #Setup Autostart - pipewire & wireplubmer
 
